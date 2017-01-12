@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">常见问题</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabrule" class="page">
+    <main class="viewport">
+        <!--<div class="grabcen">-->
+            <!--<h2>一、计算规则</h2>-->
+            <!--<h3>中奖号码</h3>-->
+            <!--<p class="title">=【（数值A+数值B）÷商品所需份数】（取余数）+10000001</p>-->
+            <!--<h3>数值A</h3>-->
+            <!--<p class="title">=最新一期体育彩票“大乐透”的开奖结果如开奖结果<br>如开奖结果为<span>01</span><span>15</span><span>10</span><span>31</span><span>04</span><span>11</span><span>24</span>,则数值A为115103141124。</p>-->
+            <!--<h3>数值B</h3>-->
+            <!--<p class="title">=最新一期体育彩票“排列五”的开奖结果如开奖结果<br>如开奖结果为<span>4</span><span>1</span><span>2</span><span>7</span><span>3</span>,则数值B为41273。</p>-->
+            <!--<h2>二、夺宝规则</h2>-->
+            <!--<p>1、同一个商品可购买多份，购买的份数越多，中奖的概率就越大； </p>-->
+            <!--<p>2、夺宝号根据总份数随机发送（自10000001起），夺宝成功后可至我的夺宝记录查看；</p>-->
+            <!--<p>3、当一件商品达到总需份数时，同时体彩开奖后，根据平台计算规则算出一个幸运获奖者公布在活动页； </p>-->
+            <!--<p>4、最终收货地址以APP“我”—个人信息填写的收货地址为主；所有实物奖品将在公布中奖名单后7个工作日内寄出。若有问题欢迎致电400-0455-360或联系客服QQ群236613404；</p>-->
+            <!--<p>5、夺宝成功的商品，无论中奖与否，所有参与夺宝的钱币不予退还；若夺宝时间结束，所需份数未满，则视为夺宝失败，钱币在结束后3个工作日内退还； </p>-->
+            <!--<p>6、中奖用户晒单成功，平台另奖励50钱币； </p>-->
+            <!--<p>7、凡以不正当手段（包括但不限于作弊、扰乱系统、实施网络攻击等）进行兑换，平台有权取消夺宝资格；</p>-->
+            <!--<template v-if="isApp">-->
+                <!--<p>8、本活动由钱庄网提供，与设备生产商Apple Inc.无关。</p><p>本次活动最终解释权归杭州乾庄互联网金融服务有限公司所有</p>-->
+            <!--</template>-->
+            <!--<template v-else>-->
+                <!--<p>8、最终解释权归杭州乾庄互联网金融服务有限公司所有</p>-->
+            <!--</template>-->
+        <!--</div>-->
+        <div class="rule-data">
+            <div class="rule"  @click="issue(1,$event)" :style="backgroundColor1">一、如何夺宝？ <img :src="array.topImg1"></div>
+            <div class="matter matter0" v-if="issueShow1">
+                <ul>
+                    <li>1、选择喜欢的商品，参与夺宝，选择参与的份数并支付相应的钱币，支付成功即可获得一个夺宝号。（根据总份数随机发送【自10000001起】）；</li>
+                    <li>2、获得商品：当参与份数被分配完后，系统根据规则计算出1个幸运号码，持有该号码的用户，直接获得商品；</li>
+                    <li>3、夺宝成功的商品，无论中奖与否，所有参与夺宝的钱币不予退还；若夺宝时间结束，所需份数未满，则视为夺宝失败，钱币在结束后3个工作日内退还。</li>
+                    <li>注：凡以不正当手段（包括但不限于作弊、扰乱系统、实施网络攻击等）进行兑换，平台有权取消夺宝资格。</li>
+                </ul>
+            </div>
+            <div class="rule"  @click="issue(2,$event)" :style="backgroundColor2">二、如何获得钱币？<img :src="array.topImg2"></div>
+            <div class="matter matter1" v-if="issueShow2">
+                <p>每天签到可领取钱币。除此之外，钱庄网会员可以通过投资、邀请好友、参与平台运营活动获得钱币。对应钱币规则如下：</p>
+                <ul>
+                    <li>
+                        <div>获取方式</div>
+                        <div>所得钱币</div>
+                    </li>
+                    <li>
+                        <div>成功注册钱庄网账号</div>
+                        <div>300</div>
+                    </li>
+                    <li>
+                        <div>首次完成实名认证</div>
+                        <div>500</div>
+                    </li>
+                    <li>
+                        <div>首次投资定期理财产品</div>
+                        <div>1000</div>
+                    </li>
+                    <li>
+                        <div>首次投资钱宝宝</div>
+                        <div>200</div>
+                    </li>
+                    <li>
+                        <div>投资定期理财产品每100元</div>
+                        <div>1</div>
+                    </li>
+                    <li>
+                        <div>投资定期理财产品第1名</div>
+                        <div>50</div>
+                    </li>
+                    <li>
+                        <div>投资定期理财产品最后1名</div>
+                        <div>50</div>
+                    </li>
+                    <li>
+                        <div>签到一天</div>
+                        <div>5</div>
+                    </li>
+                    <li>
+                        <div>邀请1名好友注册送</div>
+                        <div>100</div>
+                    </li>
+                    <li>
+                        <div>邀请1名好友实名送</div>
+                        <div>100</div>
+                    </li>
+                    <li>
+                        <div>邀请1名好友首投送(不含钱宝宝)</div>
+                        <div>800</div>
+                    </li>
+                    <li>
+                        <div>参加活动</div>
+                        <div>活动自定义</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="rule"  @click="issue(3,$event)" :style="backgroundColor2">三、中奖规则什么？<img :src="array.topImg3"></div>
+            <div class="matter matter2 grabcen" v-if="issueShow3">
+                <h2>一、计算规则</h2>
+                <h3>中奖号码</h3>
+                <p class="title">=【（数值A+数值B）÷商品所需份数】（取余数）+10000001</p>
+                <h3>数值A</h3>
+                <p class="title">=最新一期体育彩票“大乐透”的开奖结果如开奖结果<br>如开奖结果为<span>01</span><span>15</span><span>10</span><span>31</span><span>04</span><span>11</span><span>24</span>,则数值A为115103141124。</p>
+                <h3>数值B</h3>
+                <p class="title">=最新一期体育彩票“排列五”的开奖结果如开奖结果<br>如开奖结果为<span>4</span><span>1</span><span>2</span><span>7</span><span>3</span>,则数值B为41273。</p>
+            </div>
+            <div class="rule"  @click="issue(4,$event)" :style="backgroundColor2">四、奖品怎么领？<img :src="array.topImg4"></div>
+            <div class="matter matter3" v-if="issueShow4">
+                <p>在您获奖后会收到获奖短信通知。</p>
+                <p>收到通知后，获得实物的用户请到APP“我”— 个人信息里完善收货地址，以便您及时收到商品。</p>
+                <p>所有实物奖品将在公布中奖名单后7个工作日内寄出。</p>
+            </div>
+            <div class="rule"  @click="issue(5,$event)" :style="backgroundColor2">五、晒单规则 <img :src="array.topImg5"></div>
+            <div class="matter matter4" v-if="issueShow5">
+                <p>您中奖后可以通过“我的夺宝记录”页面的"晒单分享"入口进行晒单。</p>
+                <p>晒单成功，平台奖励您50钱币。</p>
+                <p>晒单请注意：</p>
+                <p>获奖感言建议您不少于20个字；</p>
+                <p>同时上传3张收到的奖品图片。</p>
+            </div>
+        </div>
+        <div class="floter">
+            <p>如有疑问请致电钱庄客服400-0455-360</p>
+            <p>本活动由钱庄网提供，与设备生产商Apple lnc 无关，</p>
+            <p>本次活动最终解释权归杭州乾庄互联网金融服务有限公司所有</p>
+        </div>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabrule']);
+</script>
+</body>
+</html>

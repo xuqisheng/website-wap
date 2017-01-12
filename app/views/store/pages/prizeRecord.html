@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>抽奖</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pagePrizeRecord" class="page">
+    <main class="viewport">
+        <div class="tit">中奖记录</div>
+        <div class="cont" id="prizeRecordList"></div>
+    </main>
+    <footer class="operate-con">
+        <a id="backBtn" href="javascript:;">返回</a>
+    </footer>
+</section>
+<section id="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/prizeRecord']);
+</script>
+</body>
+</html>

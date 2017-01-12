@@ -1,0 +1,192 @@
+@import '../../../../libs/qst/src/all'
+$global-reset();
+
+$default-font-size = 100px;
+$support-old-ie = false;
+$original-size = false;
+
+.js_hide {
+  display: none !important
+}
+
+a {
+  display: block
+  color: inherit
+}
+
+body {
+  font-family: $default-mobile-font-family
+  background-color: #a93236
+  font-size: .24rem
+}
+
+//--------------------------------------------------------【基础布局】
+.viewport {
+  max-width: 720px;
+  margin: 0 auto
+  position: relative
+}
+
+.page,
+.page > .viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0
+  overflow-y: scroll;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+//--------------------------------------------------------【公共样式】
+//页面加载中遮罩
+#pageLoading {
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  z-index: 9999
+  background rgba(255, 255, 255, 1) url("../../../image/promotion/common/loading.gif") no-repeat center center
+  background-size $rem(136px auto);
+}
+//--------------------------------------------------------【页面样式】
+
+#pageHome {
+  .header-con {
+    position: relative
+    height: $rem(461px);
+    background: url("../../../image/promotion/sjgj/header.jpg") no-repeat top center;
+    background-size: 100% auto;
+    .info {
+      position: absolute
+      left: 0
+      bottom: 0
+      width: 100%
+      line-height: $rem(65px);
+      text-align: center
+      color: #fed6c7
+      font-size: $rem(36px);
+    }
+  }
+  .gift-con {
+    margin-top: $rem(50px);
+    ul {
+      position: relative
+      $box-sizing(border-box);
+      width: $rem(536px);
+      margin: 0 auto;
+      background-color #cd423b;
+      text-align: center
+      padding: $rem(30px 0 40px);
+      li + li {
+        margin-top: $rem(45px);
+      }
+      .tit {
+        font-weight: bold
+        $embossed-text();
+        font-size: $rem(32px);
+        color: #ffc366
+        &:before {
+          content ' '
+          display: inline-block
+          margin-right: $rem(5px);
+          width: $rem(48px);
+          height: $rem(24px);
+          background url("../../../image/promotion/sjgj/tit-cloud.png") no-repeat center center
+          background-size 100% auto
+        }
+        &:after {
+          content ' '
+          display: inline-block
+          margin-left: $rem(5px);
+          width: $rem(48px);
+          height: $rem(24px);
+          background url("../../../image/promotion/sjgj/tit-cloud.png") no-repeat center center
+          background-size 100% auto
+          transform: scaleX(-1);
+        }
+      }
+      .cont {
+        margin-top: $rem(10px);
+        font-size: $rem(28px);
+        color: #ffc366
+      }
+      &:before {
+        content ' '
+        position: absolute
+        right: 0
+        top: 0
+        height: $rem(16px);
+        width: 100%
+        background-color: #f57e52;
+        $browser-prefix(transform, skew(-45deg, 0deg) translate(0, -100%));
+        $browser-prefix(transform-origin, (right top));
+      }
+      &:after {
+        content ' '
+        position: absolute
+        right: 0
+        top: 0
+        height: 100%
+        width: $rem(16px);
+        background-color: #fe6f6a;
+        $browser-prefix(transform, skew(0deg, -45deg) translate(100%, 0));
+        $browser-prefix(transform-origin, (right top));
+      }
+    }
+  }
+  .operation-con {
+    margin-top: $rem(40px);
+    text-align: center
+    a {
+      display: inline-block
+      width: $rem(417px);
+      height: $rem(84px);
+      text-indent: -9999px
+      background url("../../../image/promotion/sjgj/btn-register.png") no-repeat center top
+      background-size $rem(417px auto);
+    }
+  }
+  .rule-con {
+    margin: $rem(40px 56px 0);
+    padding-bottom: $rem(30px);
+    .tit {
+      position: relative
+      text-align: center
+      font-size: $rem(32px);
+      color: #fc5e59
+      h2 {
+        position: relative
+        z-index: 1
+        display: inline-block
+        background-color #a93236
+        padding: $rem(0 25px);
+      }
+      &:after {
+        content ' '
+        position: absolute
+        right: 0
+        top: 50%
+        width: 100%
+        height: 1px
+        background-color: #f65b57;
+        $browser-prefix(transform, translate(0, -50%));
+      }
+    }
+    .cont {
+      margin-top: $rem(30px);
+      font-size: $rem(26px);
+      color: #fc5e59
+      line-height: 1.3
+      li + li {
+        margin-top: $rem(10px);
+      }
+    }
+  }
+}

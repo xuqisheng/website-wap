@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>钱庄理财</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageProBuy" class="page" data-title="购买" data-onpagefirstinto="proBuyInit"
+         data-callback="proBuyInto" data-fallback="proBuyOut">
+</section>
+<section id="pageBuyResult" class="page out" data-title="投资结果" data-onpagefirstinto="buyResultInit"
+         data-callback="buyResultInto" data-fallback="buyResultOut">
+
+</section>
+<section id="pageLoading"></section>
+<script src="../../../script/master/sea.js" id="seajsnode"></script>
+<script>
+    seajs.use(['route/routeBuy'])
+</script>
+</body>
+</html>

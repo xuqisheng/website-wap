@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">夺宝结果</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabpaywin" class="page" style="background: #f6f6f6;">
+    <main class="viewport">
+        <template v-if="successcome">
+            <div class="success-come">
+                <div class="success">
+                    <div class="win-top">
+                        <img src="../../../image/store/grab/true.png">
+                        <p class="wait">夺宝成功，等待开奖</p>
+                        <p>参与份数：{{stakeNumber}}</p>
+                        <p>实付钱币：<span class="wait-red">{{stakeScore}}</span></p>
+                        <div class="tel-Number tel-pos" v-if="isrela"><span class="tel-name">夺宝号码：</span><p class="Number">{{grabNumberArray}}<a class="all" v-if="isshow" @click="allshow">显示全部</a></p></div>
+                        <div class="tel-Number tel-pos" v-else><span class="tel-name">夺宝号码：</span><p class="Number">{{grabNumberArray}}<a class="all" v-if="isshow" @click="allshowup">收起</a></p></div>
+                    </div>
+                </div>
+                <div class="address">为了让您及时收到实物奖品，请去个人中心<span>完善收货地址</span></div>
+                <div class="continue"><a class="continue-keep" @click="gotohome">继续夺宝</a><a class="continue-keep continue-take" @click="gotobrecord">查看夺宝记录</a></div>
+                <div class="tel-phone">如有疑问请致电钱庄客服 400-0455-360</div>
+            </div>
+        </template>
+        <template v-if="err">
+            <div class="bg-bg">
+                <p class="wait nowait">夺宝失败</p>
+                <p class="hand">很抱歉，订单处理失败，请重新夺宝</p>
+                <a class="refresh" @click="gotoduobao">重新夺宝</a>
+            </div>
+        </template>
+        <template v-if="processed">
+            <div class="bg-bg">
+                <p class="wait nowait1">夺宝处理中，请稍等</p>
+                <p class="hand">订单处理中，请不要关闭页面</p>
+                <p class="hand1">刷新可查看处理结果</p>
+                <a class="refresh" @click="brack">刷新页面</a>
+            </div>
+        </template>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabpaywin']);
+</script>
+</body>
+</html>

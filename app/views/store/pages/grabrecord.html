@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">我的记录</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabrecord" class="page">
+    <main class="viewport">
+        <div class="state"><span @click="underway" :class="{'on':istrue}">进行中</span><span :class="{'on':!istrue}" @click="announce">已揭晓</span></div>
+        <template v-if="showData">
+
+            <template v-for="(i,arr) in arrs">
+                <div class="content">
+                    <div class="cen">
+                        <h3  @click="gotodetails(i)">{{arr.goodsName}}</h3>
+                        <template v-if="arr.layers">
+                           <template v-for="(j,n) in arr.datadetailList">
+                               <p>参与份数：{{n.stakeNumber}}</p>
+                               <p>实付钱币：{{n.stakeScore}}</p>
+                                   <div class="tel-Number tel-pos" v-if="n.isShow"><span class="tel-name">夺宝号码：</span><p class="Number">{{{n.grabNumber}}}<a class="all" @click="alls(i,j)" v-if="n.all">显示全部</a></p></div>
+                                   <div class="tel-Number tel-pos" v-else><span class="tel-name">夺宝号码：</span><p class="Number">{{{n.grabNumber}}}<a class="all" @click="allsup(i,j)" v-if="n.all">收起</a></p></div>
+                               <p>参与时间：{{n.joinTime}}</p>
+                               <p class="line" v-if="j+1 != arr.datadetailList.length"></p>
+                           </template>
+                        </template>
+                        <template v-else>
+                            <p>参与份数：{{arr.stakeNumber}}</p>
+                            <p>实付钱币：{{arr.stakeScore}}</p>
+                                <div class="tel-Number tel-pos" v-if="arr.isShow"><span class="tel-name" >夺宝号码：</span><p class="Number">{{{arr.grabNumber}}}<a class="all" @click="all(i,j)" v-if="arr.all">显示全部</a></p></div>
+                                <div class="tel-Number tel-pos" v-else><span class="tel-name" >夺宝号码：</span><p class="Number">{{{arr.grabNumber}}}<a class="all" @click="allup(i)" v-if="arr.all">收起</a></p></div>
+                            <p>参与时间：{{arr.joinTime}}</p>
+                        </template>
+                        <template v-if="arr.myGrabState == -1">
+                            <p class="lottery">夺宝结束，等待揭晓</p>
+                        </template>
+                        <template v-if="arr.myGrabState == 0">
+                            <p class="lottery">等待揭晓</p>
+                        </template>
+                        <template v-if="arr.myGrabState == 1">
+                            <p class="lottery lotterys lotteryss"><span class="lotteryRed">您中奖了</span>（中奖号码：<span class="lotteryRed">{{arr.luckyNumber}}</span>）</p>
+                            <p >揭晓时间：{{arr.publishTime}}</p>
+                            <p class="award">奖品邮寄，请去个人中心完善收货地址。</p>
+                            <img src="../../../image/store/grab/lottery.png" class="lotteryImg">
+                            <div class="single" @click="grabbask(i)">晒单<br>分享</div>
+                        </template>
+                        <template v-if="arr.myGrabState == 2">
+                            <p class="lottery lotterys "><span class="lotteryRed">未中奖</span>（中奖号码：{{arr.luckyNumber}}）</p>
+                            <p class="publishTime">揭晓时间：{{arr.publishTime}}</p>
+                        </template>
+                        <template v-if="arr.myGrabState == 3">
+                            <p class="lottery lotterys lotteryRed">夺宝失败，钱币返还(可能延迟)</p>
+                            <p class="publishTime">揭晓时间：{{arr.publishTime}}</p>
+                        </template>
+                    </div>
+                </div>
+            </template>
+            <a class="more" v-if="more" @click="mores">查看更多</a>
+        </template>
+        <template v-else>
+            <div class="nodata">
+                <img src="../../../image/store/grab/nodata.png">
+            </div>
+        </template>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabrecord']);
+</script>
+</body>
+</html>

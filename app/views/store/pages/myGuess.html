@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>我的竞猜</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+    <section id="myGuess" class="page">
+        <main class="viewport">
+            <div class="state"><span @click="underway" :class="{'on':istrue}">进行中</span><span :class="{'on':!istrue}" @click="announce">已揭晓</span></div>
+            <template v-if="Record">
+                <div class="past-guess">
+                    <div class="past-bust"><div class="no-past">还未竞猜</div></div>
+                </div>
+            </template>
+            <template v-else>
+                <template v-for="arr in arrs">
+                    <div class="past-center">
+                        <div class="past-guess">
+                            <div class="past-bust">
+                                <div class="past-left">
+                                    <h2 class="title">{{arr.title}}</h2>
+                                    <h2 class="title-answer">正确答案：{{arr.resultContent}}</h2>
+                                    <template v-if="istrue">
+                                        <p class="Result">共押<span>{{arr.stakeScore}}</span>钱币  猜中得<span>{{arr.rewardScore}}</span>钱币</p>
+                                    </template>
+                                    <template v-else>
+                                        <p class="Result" v-if="arr.answerState == 1">共押<span>{{arr.stakeScore}}</span>钱币  已得<span>{{arr.rewardScore}}</span>钱币</p>
+                                        <p class="Result" v-else>共押<span>{{arr.stakeScore}}</span>钱币</p>
+                                    </template>
+                                    <p class="conjecture">所猜答案：{{arr.answerContent}}</p>
+                                    <p class="past-title">{{arr.answerTime}}</p>
+                                    <template v-if="!istrue">
+                                        <img src="../../../image/store/banner/publish.png" v-if="arr.answerState == 1" class="dataImg">
+                                        <img src="../../../image/store/banner/nopublish.png" v-else class="dataImg">
+                                    </template>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+            <template v-if="isband">
+                <template v-if="more">
+                <a class="more" href="javascript:;" @click="addmore">查看更多</a>
+                </template>
+                <template v-else>
+                    <a class="more " href="javascript:;">没有更多了</a>
+                </template>
+            </template>
+        </main>
+    </section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+    <script>
+        require(['page/myGuess']);
+    </script>
+</body>
+</html>

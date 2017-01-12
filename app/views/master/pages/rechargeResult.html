@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>在投资金</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="rechargeResult" class="page">
+    <article class="viewport">
+        <div class="main">
+            <div class="state-con success">
+                <div class="info">充值成功</div>
+            </div>
+            <div class="meta-wrap">
+                <div class="item">
+                    <h3 class="tit">充值金额(元)</h3>
+                    <p id="resultData" class="cont red">0.00</p>
+                </div>
+                <div class="item">
+                    <h3 class="tit">交易状态</h3>
+                    <p class="cont">交易成功</p>
+                </div>
+            </div>
+            <div class="operation-con">
+                <a id="goProductList" href="javascript:;">立即投资</a><a id="goPageUser" href="javascript:;">返回资产</a>
+            </div>
+        </div>
+        <div class="contact-con">如有疑问请致电钱庄客服400-0455-360</div>
+    </article>
+</section>
+
+<section id="pageLoading"></section>
+<script src="../../../script/master/sea.js" id="seajsnode"></script>
+<script>
+    seajs.use('page/rechargeResult');
+</script>
+</body>
+</html>

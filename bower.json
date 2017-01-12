@@ -1,0 +1,34 @@
+{
+  "name": "wap钱庄",
+  "version": "0.0.1",
+  "authors": [
+    "xjchenhao <wy.chenhao@qq.com>"
+  ],
+  "description": "wap钱庄、积分商城",
+  "keywords": [
+    "wap",
+    "wap钱庄",
+    "h5",
+    "h5钱庄"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fastclick": "~1.0.6",
+    "handlebars": "~4.0.5",
+    "iSlider": "~2.0.5",
+    "jquery": "~2.1.4",
+    "jquery_lazyload": "jquery.lazyload#~1.9.7",
+    "mockjs": "~0.1.10",
+    "qianMobileModule": "*",
+    "qst": "~1.0.8",
+    "requirejs": "~2.1.22"
+  }
+}

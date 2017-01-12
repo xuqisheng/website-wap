@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">商品详情</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabparticulars" class="page" style="background: #f6f6f6;">
+    <main class="viewport">
+        <header class="slide-con">
+            <div class="scene slide-con" id="scene">
+            </div>
+        </header>
+            <div class="introduce">
+                <h2 class="title">{{goodsName}}</h2>
+                <div class="grab-fall"><p class="grab-price">原价：{{costPrice}}钱币</p><p class="grab-money">夺宝价：<span class="money"><i>{{grabPrice}}钱币</i></span></p></div>
+                <div class="progress"><p class="progress-ps" :style="{width :apply / totalNeed*100 + '%'}"></p></div>
+                <div class="demand"><span>总需：<i>{{totalNeed}}</i>份</span><span class="surplus">剩余：{{leftNeed}}份</span></div>
+                <div class="bear" v-if="off">
+                    <div class="bear-prize">获奖者</div>
+                    <p class="tel-Number">中奖号码：<span>{{luckyNumber}}</span></p>
+                    <p>获奖者：{{phoneStr}}  {{realNameStr}}</p>
+                    <p class="tel-point">参与份数：{{stakeNumber}}</p>
+                    <div class="bathe" @click="grabbask">
+                        晒单<br>分享
+                    </div>
+                    <div class="bathe figure" @click="bathe">计算<br>详情</div>
+                </div>
+            </div>
+            <div class="explain">
+                <h3>商品说明</h3>
+                <div class="referral">{{{goodsContent}}}</div>
+            </div>
+        <div class="Meeting" @click="all"><span>所有参与记录</span><img src="../../../image/store/grab/arrows.png"> </div>
+
+    </main>
+</section>
+<div id="gotograb" :style="backgroundColor" @click="convert">{{{day}}}</div>
+    <!--<div class="grabpoker"  v-if="poker" @click="closepoker">-->
+
+    <!--</div>-->
+    <!--<div class="Capacity"  v-if="poker">-->
+        <!--<div class="Capa-cen">-->
+            <!--<div class="close"><img src="../../../image/store/grab/close.png" class="closeImg" @click="close"></div>-->
+            <!--<div class="convert">-->
+                <!--<div class="convert-cen">-->
+                    <!--<span class="amount">兑换数量</span>-->
+                    <!--<div class="oncount">-->
+                        <!--<span class="num-ctrl minus" @click="reduce" Number :style="styleObjectIn" :class="{ShowClss:ShowCls}"></span>-->
+                        <!--<input class="num-text" type="tel" v-model="coin"  @input="change">-->
+                        <!--<span class="num-ctrl push" @click="plus(event)" Number  :style="styleObject"  :class="{addclass:ShowClsp}"></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div class="pay">&ndash;&gt;-->
+                <!--&lt;!&ndash;<span class="amount">合计支付</span><span class="money">{{fund}}</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="gotopay" @click="defray">{{payoff}}</a>&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
+<input id="slideImgList"  type="hidden" value="{{goodsUrlArray}}">
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabparticulars']);
+</script>
+</body>
+</html>

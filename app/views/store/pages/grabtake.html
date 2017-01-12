@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">所有参与记录</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabtake" class="page" style="background: #fff;">
+    <main class="viewport">
+        <div class="main">
+                <p class="nodata"  v-if="isShow"> <img src="../../../image/store/grab/nodata.png"></p>
+                <ul v-else>
+                   <template v-for="list in lists">
+                        <li>
+                            <template v-if="list.grabState == 1">
+                                <img src="../../../image/store/grab/crown.png" class="crown">
+                                <img src="../../../image/store/grab/winner.png" class="winner">
+                            </template>
+                            <p class="name">{{list.phoneStr}} {{list.realNameStr}}</p>
+                            <p>参与时间：{{list.joinTime}}</p>
+                            <p class="stakeNumber">参与份数：{{list.stakeNumber}}</p>
+                        </li>
+                   </template>
+                </ul>
+                <a class="more" v-if="isMore" @click="isMores">查看更多</a>
+        </div>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabtake']);
+</script>
+</body>
+</html>

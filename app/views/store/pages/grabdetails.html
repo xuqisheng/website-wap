@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">夺宝详情</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabdetails" class="page" style="background: #f6f6f6;">
+    <main class="viewport">
+        <div class="Capacity">
+            <!--<div class="close"><img src="../../../image/store/grab/close.png" class="closeImg" @click="close"></div>-->
+            <div class="convert">
+                <div class="convert-cen">
+                    <span class="amount">夺宝份数</span>
+                    <div class="oncount">
+                        <span class="num-ctrl minus" @click="reduce" Number :style="styleObjectIn" :class="{ShowClss:ShowCls}"></span>
+                        <input class="num-text" type="tel" v-model="coin"  @input="change">
+                        <span class="num-ctrl push" @click="plus(event)" Number  :style="styleObject"  :class="{addclass:ShowClsp}"></span>
+                    </div>
+                </div>
+            </div>
+            <p class="waytitle">夺宝方式<span v-if="support">(*此商品支持余额支付)</span></p>
+            <p class="support"></p>
+            <div class="grabform">
+                <div class="grabform-cen"  @click="radio">
+                    <div class="grabform-auto">
+                        <span class="grabmoney">钱币夺宝</span>（当前钱币：{{topay.userScoreLeft}}）<span class="discount" v-if="topay.scorePayDiscount != 0">{{topay.scorePayDiscount}}折</span>
+                        <span class="radio" :class="{ on: isActive}"><input type="radio" name="money"  class="radio1" id="coin"></span>
+                    </div>
+                </div>
+                <div class="grabform-cen"  @click="radio1" v-if="showradio">
+                    <div class="grabform-auto grabform-no">
+                        <span class="grabmoney">余额夺宝</span>（当前余额：{{topay.userAmountLeft1}}元）<br>
+                        <span class="scale">1元=200钱币</span>
+                        <span class="radio" :class="{ on: isActive1}"><input type="radio" name="money" class="radio1" id="sum"></span>
+                    </div>
+                </div>
+            </div>
+            <p class="deal" @click="details">我同意<span> 《钱庄网“一元夺宝”服务协议》</span></p>
+            <div class="pay">
+                <div class="amount" ><b>合计</b><div class="money"><span>{{topay.grabPrice}}</span><span  v-if="!isActive">.00</span><b  style="font-weight: normal;">{{amount}}</b></div></div>
+            </div>
+            <a class="gotopay" :style="styleOutIn" @click="defray" v-if="showState">{{title}}</a>
+            <a class="gotopay" :style="stateStyle" href="javascript:;" v-if="!showState">{{nostate}}</a>
+        </div>
+    </main>
+</section>
+<div class="grabpoker"  v-if="poker" @click="closepoker">
+
+</div>
+<div class="payPoP" v-if="poker">
+    <div class="close">输入交易密码<div @click="close" class="close-img"></div><img src="../../../image/store/grab/close.png" class="closeImg" ></div>
+    <div class="psd"><input type="password" placeholder="请输入钱庄网交易密码" val="" v-model="pasd" @input="changepsd"></div>
+    <div class="forgetpsd"><a href="javascript:;" @click="forget">忘记交易密码</a></div>
+    <a class="gotopay" :style="stylePoP"  @click="gotoPoP">{{confirm}}</a>
+</div>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabdetails']);
+</script>
+</body>
+</html>

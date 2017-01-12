@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">最新揭晓</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="guessrpublish" class="page" style="background:#a091d6;" >
+    <main class="viewport">
+        <template v-if="lists == '' ">
+            <div  class="guess-list guess-prepare">
+                <p>暂无揭晓记录</p>
+            </div>
+        </template>
+        <template v-else>
+            <template v-for='(i, list) in lists'>
+                <div  class="guess-list" >
+                    <div class="guess-item">
+                        <div class="gi-header">
+                            <h2 class="title">{{list.title}}</h2>
+                            <p class="sub-title">答题时间：{{list.time}}</p>
+                        </div>
+                        <div class="gi-body">
+                            <template v-for='n in list.data'>
+                                <div class="select-item " data-id="{{n.ListId}}" :class="{'disabled': list.resultRewardId != n.ListId  , 'selected': list.resultRewardId == n.ListId }">
+                                    <span class="answer">{{n.optionContent}}</span>
+                                    <span class="item-inner inner-right" v-if="list.resultRewardId == n.ListId">正确答案</span>
+                                    <span class="item-inner inner-right" v-else>不正确</span>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="AnswerName">答案已揭晓</div>
+                    </div>
+                </div>
+            </template>
+        </template>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/guesspublish']);
+</script>
+
+</body>
+</html>

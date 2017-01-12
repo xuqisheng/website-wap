@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>积分明细</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageIntegralDetail" class="page">
+    <main class="viewport">
+        <header class="integral-hd clearfix">
+            <div class="amount f_l">
+                <i class="icon icon-coins"></i>
+                <span id="integralTotal">0</span>
+            </div>
+            <div class="operation f_r">
+                <a href="ruleExplain.html">如何赚钱币？</a>
+            </div>
+        </header>
+        <div class="record-con">
+            <div class="tab-header">
+                <nav id="tabBtns" class="ui-tab-simple">
+                    <a class="ui-tab-btn" href="javascript:;">
+                        <span>收入</span>
+                    </a>
+                    <a class="ui-tab-btn" href="javascript:;">
+                        <span>支出</span>
+                    </a>
+                </nav>
+            </div>
+            <div id="tabCont">
+                <div class="cont tab-item">
+                    <div class="main"></div>
+                    <footer class="footer">
+                        <p>积分商城活动由钱庄网提供</p>
+
+                        <p>最终解释权归杭州乾庄互联网金融服务有限公司所有</p>
+                    </footer>
+                </div>
+                <div class="cont tab-item">
+                    <div class="main"></div>
+                    <footer class="footer">
+                        <p>积分商城活动由钱庄网提供</p>
+
+                        <p>最终解释权归杭州乾庄互联网金融服务有限公司所有</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+<section id="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/integralDetail']);
+</script>
+</body>
+</html>

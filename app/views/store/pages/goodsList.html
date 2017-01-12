@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>全部商品</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageGoodsList" class="page">
+    <main class="viewport">
+        <div class="headslide">
+            <ul>
+                <li><a href="javascript:;" data-hybrid-title="今日新品"><i class="icon  product"></i><span class="iconin">今日新品</span></a></li>
+                <li><a href="javascript:;" data-hybrid-title="电子商城"><i class="icon  emporium"></i><span>电子商城</span></a></li>
+                <li><a href="javascript:;" data-hybrid-title="生活丽人"><i class="icon  beaut"></i><span>生活丽人</span></a></li>
+                <li><a href="javascript:;" data-hybrid-title="吃货达人"><i class="icon  foodie"></i><span>吃货达人</span></a></li>
+                <li><a href="javascript:;" data-hybrid-title="休闲娱乐"><i class="icon entertainment"></i><span>休闲娱乐</span></a></li>
+                <li><a href="javascript:;" data-hybrid-title="免邮专区"><i class="icon freemail"></i><span>免邮专区</span></a></li>
+                <li><a href="javascript:;" data-hybrid-title="钱庄福利"><i class="icon welfare"></i><span>钱庄福利</span></a></li>
+                <li><a href="javascript:;" data-hybrid-title="虚拟物品"><i class="icon virtual"></i><span>虚拟物品</span></a></li>
+            </ul>
+        </div>
+        <div id="goodsList">
+
+        </div>
+        <footer class="footer">
+            <p>积分商城活动由钱庄网提供</p>
+
+            <p>最终解释权归杭州乾庄互联网金融服务有限公司所有</p>
+        </footer>
+    </main>
+</section>
+<section id="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/goodsList']);
+</script>
+</body>
+</html>

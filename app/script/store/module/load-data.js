@@ -1,0 +1,242 @@
+/*数据加载 1.1.2*/
+(function (root, factory) {
+    if (typeof define === 'function' && (define.amd || define.cmd)) {
+
+        define(function (require, exports, module) {
+            require('jquery');
+            var Event = require('qianModule/event');
+            var Infinite = require('qianModule/infinite');
+            var status = require('module/load-data-status');
+            var base = require('module/base');
+            return factory(root, Event, Infinite, status, base);
+        });
+    } else {
+        root.LoadDate = factory(root);
+    }
+})(this, function (root, Event, Infinite, status, base) {
+    // 分页接口（这里需要配置）
+    var PAGE = 'currentPage',           // 当前页
+        ROWS = 'resultData.total',      // 总条数
+        PAGE_COUNT = 'resultData.pages';// 分页总数
+
+    // 类名常量
+    var classPrefix = 'ui-load-';
+
+    // 生成类名对象
+    var CLASS = (function () {
+        return {
+            CONTAINER: classPrefix + 'container',
+            CONTENT: classPrefix + 'content',
+            LOADING_BG: classPrefix + 'bg',
+            ING: classPrefix + 'ing'
+        };
+    }());
+
+    // 判断是否存在base模块,base模块中有ajax代理
+    if (typeof base === 'undefined') {
+        var base = $;
+    }
+
+
+    var _eventId = 0;       // new出多个实例时保证每个实例事件的独立性
+
+
+    var LoadDate = function (opts) {
+        var DEFAULT = {
+            url: '',                // 接口地址(必须)
+            container: '',          // load-container 容器对象(必须)
+            tpl: '',                // 可以是模板路径或者是要解析的字符串(必须)
+            noListStr: '暂无记录',   // 无记录时，显示的文本(缺省)
+            sendData: {},           // 默认发送的data数据(缺省)  去除了page :1，不可为null
+            pageType: 'none',       // 分页类型(缺省)
+            scrollBox: '',           // 加载的滚动条监听容器
+            tplFn: null,            // 传入data解析成html函数
+            callback: null          // 载入完成后的回调函数(缺省)(用于绑定事件，注意尽量事件委托，并注意先off，免得重复绑定)
+        };
+        this._config = $.extend({}, DEFAULT, opts);
+        this._init();
+        this._load();
+    };
+
+    LoadDate.prototype._init = function () {
+        var config = this._config;
+
+        // 设置命名空间
+        this._eventId = ++_eventId;
+
+        //请求页码
+        this.currentPage = 1;
+
+        // 保证容器对象是jquery对象
+        config.container = typeof config.container === "object" ? config.container : $(config.container);
+        config.scrollBox = typeof config.scrollBox === "object" ? config.scrollBox : $(config.scrollBox);
+
+        // 添加数据列表容器
+        config.container.addClass(CLASS.CONTAINER).html('<div class="' + CLASS.CONTENT + '"></div>');
+
+        //添加事件订阅
+        this._addEvent();
+
+    };
+
+    LoadDate.prototype._load = function () {
+        var self = this,
+            config = self._config,
+            eventId = self._eventId;
+
+        // 给容器添加加载中class
+        config.container.addClass(CLASS.LOADING_BG);
+
+        // 生成加载中状态
+        Event.trigger('loading.' + eventId);
+
+        base.ajax({
+            url: config.url,
+            async: true,
+            data: $.extend(config.sendData, {native_view: base.isApp()}),
+            dataType: 'json',
+            type: 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (data) {
+                var html;
+
+                if (!getObjVal(data, ROWS) || getObjVal(data, ROWS) <= 0) {
+                    Event.trigger('noData.' + eventId);
+                    return;
+                }
+
+                html = config.tplFn(data);
+
+                Event.trigger('hasData.' + eventId, data, html);
+
+                self.currentPage++;
+            },
+            timeout: 10000,
+            error: function () {
+                Event.trigger('fail.' + eventId);
+            }
+        });
+    };
+    LoadDate.prototype._addEvent = function () {
+        var self = this,
+            eventId = self._eventId,
+            config = self._config,
+            container = config.container,
+            content = container.children('.' + CLASS.CONTENT),
+            callback = config.callback;
+
+        // 有数据,添加dom
+        Event.one("hasData." + eventId, function (data, html) {
+
+            removeStatus();
+            content.html(html);
+
+            // 大于一页时显示加载中
+            if (self.currentPage < getObjVal(data, PAGE_COUNT)) {
+                content.after('<div class="' + CLASS.ING + '">加载中...</div>');
+            }
+
+            callback && callback.call(null, true, data);
+        });
+
+        // 有数据,挂载下拉加载事件
+        Event.one("hasData." + eventId, function (data, html) {
+            if (getObjVal(data, PAGE_COUNT) <= 1) {
+                return false;
+            }
+
+            var infinite = new Infinite({
+                box: config.scrollBox[0] || config.container.parent()[0],
+                con: config.container[0],
+                deviation: -config.container[0].clientHeight / 3,
+                callback: function () {
+                    var isLoading = false,
+                        currentPageObj = {};  // $.extend里直接写对象的话,常量变成普通的字面量输出了,所以先在外面生成对象再放进去
+
+                    currentPageObj[PAGE] = self.currentPage;
+                    base.ajax({
+                        url: config.url,
+                        type: "post",
+                        dataType: "json",
+                        data: $.extend(config.sendData, currentPageObj, {native_view: base.isApp()}),
+                        async: false,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        success: function (data) {
+
+                            var html = config.tplFn(data);
+                            content.append(html);
+
+                            // 超出总页数
+                            if (self.currentPage >= getObjVal(data, PAGE_COUNT)) {
+                                container.children('.' + CLASS.ING).remove();
+                                return false;
+                            }
+
+                            self.currentPage++;
+
+                            isLoading = true;
+                        }
+                    });
+                    return isLoading;
+                }
+            });
+        });
+
+        // 无数据
+        Event.one("noData." + eventId, function () {
+            removeStatus();
+            var noListStr = config.noListStr;
+            status.noData(content, noListStr);
+            callback && callback.call(null, false);
+        });
+
+        // 出错
+        Event.one("fail." + eventId, function () {
+            removeStatus();
+            var reLoad = bind(self._load, self);
+            status.again(content, reLoad);
+        });
+
+        // 加载中
+        Event.one("loading." + eventId, function () {
+            status.loading.show(content);
+        });
+
+        function removeStatus() {    // 初始化,移除容器的各种状态
+            status.removeNoData(content);
+            status.loading.hide(content);
+            container.removeClass(CLASS.LOADING_BG);
+        }
+    };
+
+    LoadDate.prototype.destroy = function () {
+    };
+
+    return LoadDate;
+
+    // Helper
+    // 绑定作用域
+    function bind(fn, context) {
+        if (arguments.length < 2 && context === undefined) return fn;
+        var method = fn,
+            slice = Array.prototype.slice,
+            args = slice.call(arguments, 2);
+        return function () { // 这里传入原fn的参数
+            var array = slice.call(arguments, 0);
+            return method.apply(context, args.concat(array));
+        };
+    }
+
+    function getObjVal(obj, str) {
+        var val = obj,
+            valArr = str.split('.');
+        for (var i = 0, l = valArr.length; i < l; i++) {
+            val = val[valArr[i]];
+        }
+        return val;
+    }
+});

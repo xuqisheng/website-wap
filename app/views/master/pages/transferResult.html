@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>在投资金</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="transferResult" class="page">
+    <article class="viewport">
+        <div class="main">
+            <div class="state-con success">
+                <div class="info">申请转让成功</div>
+            </div>
+            <div class="transfer-meta">
+                <div class="transfer-progress">
+                    <div class="item">
+                        <h3 class="tit">申请转让成功</h3>
+                        <p id="resultData" class="cont"></p>
+                    </div>
+                    <div class="item">
+                        <h3 class="tit">等待审核</h3>
+                        <p class="cont"><span>48</span>小时内完成审核 <br/>
+                            如果审核未通过，则申请将被取消</p>
+                    </div>
+                    <div class="item">
+                        <h3 class="tit">上线募集</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="operation-con">
+                <a id="enter" href="javascript:;">确定</a>
+            </div>
+        </div>
+        <div class="contact-con">如有疑问请致电钱庄客服400-0455-360</div>
+    </article>
+</section>
+
+<section id="pageLoading"></section>
+<script src="../../../script/master/sea.js" id="seajsnode"></script>
+<script>
+    seajs.use('page/transferResult');
+</script>
+</body>
+</html>

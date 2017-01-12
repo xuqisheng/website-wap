@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>天天竞猜</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+    <section id="Raiders" class="page">
+        <main class="viewport">
+            <div class="myGuess-name">攻略</div>
+            <div class="past-center">
+                <div class="past-guess">
+                    <div class="past-bust">
+                        <div class="past-left">
+                            <div class="past-name"><span>1、</span><p>每题只有1次竞猜机会，提交答案后不可更改;</p></div>
+                            <div class="past-name"><span>2、</span><p>不论是否猜对，参与竞猜所扣钱币不归还；</p></div>
+                            <div class="past-name"><span>3、</span><p>答案揭晓后，猜对所获钱币立即到账，可以<br>到积分明细查看；</p></div>
+                            <div class="past-name">
+                                <span>４、</span>
+                                <template v-if="isApp">
+                                   <p>本活动由钱庄网提供，与设备生产商Apple Inc.无关。本次活动最终解释权归杭州乾庄互联网金融服务有限公司所有</p>
+                                </template>
+                                <template v-else>
+                                    <p>本次活动最终解释权归杭州乾庄互联网金融服务有限公司所有</p>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/Raiders']);
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">晒单分享</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabbask" class="page" style="background:#f6f6f6;">
+    <main class="viewport">
+        <template v-if="isShow">
+            <div class="nodata"> <img src="../../../image/store/grab/nodata1.png"></div>
+        </template>
+        <template v-else>
+                <template v-if="isbask">
+                        <!--已经晒单-->
+                    <div class="title">
+                        <div class="title-pull">
+                            <p>{{share.phoneStr}}  {{share.realNameStr}}</p>
+                            <p>{{share.shareTime}}</p>
+                        </div>
+                        <div class="title-bask">
+                            <p class="title-share">{{share.testimonials}}</p>
+                        </div>
+                    </div>
+                    <template v-for="img in share.shareImgUrlArray" track-by="$index">
+
+                        <div class="shareImg">  <img :src="img.imgs"></div>
+                    </template>
+                </template>
+                <template v-else>
+                        <!--没有晒单-->
+                    <div class="cen">
+                        <p class="hadeline"><span class="testimonials">发表感言<i>*</i>：</span><span class="surp">还可输入{{100-text.length}}个字</span></p>
+                        <textarea maxlength="100" v-model="text"></textarea>
+                        <h3 class="prize">奖品图片<span>*</span>：</h3>
+                        <p class="format">支持jpg、png格式，图片大小在50KB~3MB。</p>
+                        <div class="idCard">
+                            <template v-for="(i,img) in upImgs">
+                                <div class="card-pos">
+                                    <div class="card-add" v-show="img.isShow" >
+                                        <a href="javascript:;" class="upload_delete" data-index="{{i}}" @click="closeImg(i)" v-if="closeImg"><img src="../../../image/store/grab/shut.png"></a>
+                                        <div class="upload_append_list">
+                                            <div class="imgs"><img :src="img.img"></div>
+                                        </div>
+                                    </div>
+                                    <div class="Card-Img" v-else @click="upload(i)">
+                                        <input class="fileImage" type="file" name="uploadImg" multiple="camera" data-index="{{i}}" />
+                                        <img src="../../../image/store/grab/card.jpg" class="cardImg"  v-if="img.loadname">
+                                        <p class="upImg" v-if="img.loadname">上传图片</p>
+                                        <img :src="img.img" class="imgs" v-if="!img.loadname">
+                                        <p class="loadIn" v-if="!img.loadname">{{img.rate}}</p>
+                                        <p class="loadIn loadIns"  v-if="!img.loadname">{{img.plan}}</p>
+                                        <div class="loadImg" v-if="!img.loadname"></div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        <a class="Card-up" @click="cardup">提交</a>
+                    </div>
+                </template>
+        </template>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabbask']);
+</script>
+</body>
+</html>

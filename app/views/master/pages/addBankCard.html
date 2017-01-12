@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>添加银行卡</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageAddBankCard" class="page in">
+    <article class="viewport">
+        <div class="cont">
+            <a class="add-card-link" href="javascript:;" data-ajax="false">
+                <span class="add-card">+添加银行卡</span>
+            </a>
+        </div>
+        <div class="tips-cont" >
+            <div class="tits">温馨提醒</div>
+            <div class="conts">
+                <p>只能使用一张卡进行投资及提现哦，更换银行卡请联系钱庄网客服，同时请提供相关身份证明</p>
+            </div>
+        </div>
+    </article>
+</section>
+<section id="pageAddBankCardForm" class="page out">
+    <article class="viewport ui-form">
+        <div class="main">
+            <div class="cont">
+                <div class="row">
+                    <input type="text" class="js-bandCard ui-input-text" pattern="[0-9]*" maxlength="20" placeholder="请输入银行卡号" data-activate-check="true"/>
+                </div>
+            </div>
+            <div class="tit">为保证您的账户安全，将会对您提供的银行卡进行扣款验证，扣款金额为<span class="red">0.1</span>元 (工商银行1元)</div>
+
+            <div class="operate">
+                <a class="btn disabled js-submit red ui-btn" href="javascript:;" data-activate-submit="true">确定</a>
+            </div>
+        </div>
+        <div class="tips-cont" >
+            <div class="tits">温馨提醒</div>
+            <div class="conts">
+                <p>目前支持：农行、工行、招行、中行、建行、光大、华夏、中信、兴业、平安、浦发</p>
+            </div>
+        </div>
+    </article>
+</section>
+
+<section id="pageLoading"></section>
+<script src="../../../script/master/sea.js" id="seajsnode"></script>
+<script>
+    seajs.use('page/addBankCard');
+</script>
+</body>
+</html>

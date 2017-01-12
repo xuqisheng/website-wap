@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">计算详情</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabbathe" class="page" style="background: #f6f6f6;">
+    <main class="viewport">
+        <div class="formula">
+            <h4>计算公式</h4>
+            <p>【（数值A+数值B）÷商品所需份数】（取余数）+10000001</p>
+        </div>
+        <div class="numerical">
+            <h3>数值A</h3>
+            <p>=最新一期体育彩票“大乐透”的开奖结果<br>=<span>{{{lists.lottoNumber}}}</span>（第{{lists.lottoPeriod}}期 <i @click="dlt">查看</i>  ）</p>
+            <h3>数值B</h3>
+            <p>=最新一期体育彩票“排列五”的开奖结果<br>=<span>{{lists.fiveNumber}}</span>（第{{lists.fivePeriod}}期  <i @click="pls">查看</i> ）</p>
+        </div>
+        <div class="result">
+            <h4>计算结果</h4>
+            <p>中奖号码：<span>{{lists.luckyNumber}}</span></p>
+        </div>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabbathe']);
+</script>
+</body>
+</html>

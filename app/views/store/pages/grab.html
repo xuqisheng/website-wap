@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">一元夺宝</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grab" class="page" :style="backgroundColor" >
+    <main class="viewport">
+        <header class="top-bar" >
+            <img :src="imgsrc" class="imgsrc">
+            <nav class="nav-bar">
+                <a class="top-nav" href="javascript:;" v-if="isLogin">当前钱币:<span class="highlight">{{money}}</span></a>
+                <a class="top-nav " href="javascript:;" @click="gotoLogin" v-else>当前钱币:<span class="highlight nodata" >未登录</span></a>
+                <a class="top-nav top-navtwo" href="javascript:;" @click="Raiderss">常见问题</a>
+                <a class="top-nav" href="javascript:;" @click="myshare"><img src="../../../image/store/banner/shareImg.png"> 分享</a>
+            </nav>
+        </header>
+        <div class="Login" v-if="!isLogin">不登录如何玩耍<a href="javascript:;" class="goLogin" @click="gotoLogin">立即登录</a></div>
+        <div class="center">
+            <div class="status">
+                <div class="status-publish status-in" @click="publish"><img src="../../../image/store/grab/newest.png">最新揭晓</div>
+                <div class="status-card status-in" @click="sharecard"><img src="../../../image/store/grab/card.png">晒单</div>
+                <template v-if="isLogin">
+                    <div class="status-record status-in" @click="gostatus" v-if="!needTip"><img src="../../../image/store/grab/record.png">我的记录</div>
+                    <div class="status-record status-in" @click="needTips" v-else><img src="../../../image/store/grab/record.png">我的记录</div>
+                    <a class="godata" v-if="needTip"></a>
+                </template>
+                <template v-else>
+                    <div class="status-record status-in" @click="gotoLogin"><img src="../../../image/store/grab/record.png">我的记录</div>
+                </template>
+            </div>
+            <div class="noshop" v-if="islists">
+                <img src="../../../image/store/grab/noshop1.jpg">
+                <p>商品在路上</p>
+            </div>
+            <template v-for="(i,list) in lists" v-cloak v-if="!islists">
+                <div class="shop" @click="shoppublish(i)">
+                    <div class="shop-item">
+                        <img :src="list.goods_url">
+                    </div>
+                    <h2 class="title">{{list.goodsName}}</h2>
+                    <p class="grab-money">夺宝价：<span class="money"><i>{{list.grabPrice}}</i>钱币</span></p>
+                    <div class="progress"><p class="progress-ps" :style="{width :list.apply / list.totalNeed*100 + '%'}"></p></div>
+                    <div class="demand"><span>总需：<i>{{list.totalNeed}}</i>份</span><span class="surplus">剩余：{{list.leftNeed}}份</span></div>
+                    <div class="count-down" v-if="list.activity">{{{list.day}}}</div>
+                    <div v-else class="count-h"><div class="count-down count-ondown" :style="list.bgcolor">{{list.headline}}</div></div>
+                    <div class="mark" v-if="list.MarkShow"><span>{{list.cornerMark}}</span></div>
+                    <!--<div class="mark" ><span>秒杀</span></div>-->
+                </div>
+            </template>
+            <template v-if="isApp">
+                <div class="Apple"><p>本活动由钱庄网提供，与设备生产商Apple Inc.无关。</p><p>最终解释权归杭州乾庄互联网金融服务有限公司所有</p></div>
+            </template>
+            <template v-else>
+                <div class="Apple"> <p>最终解释权归杭州乾庄互联网金融服务有限公司所有</p></div>
+            </template>
+        </div>
+    </main>
+
+<div class="poker" @click="pokers" v-if="poker">
+    <img src="../../../image/store/grab/poker.png">
+</div>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grab']);
+</script>
+</body>
+</html>

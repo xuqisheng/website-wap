@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">最新揭晓</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabpublish" class="page" :style="backgroundColor">
+    <main class="viewport">
+        <div class="center">
+            <template v-if="isShow">
+                <p class="nodata" > <img src="../../../image/store/grab/nodata.png"></p>
+            </template>
+            <template  v-else>
+                <template v-for="(i,list) in lists" >
+                    <div class="shop" @click="shoppublish(i)">
+                        <div class="shop-item">
+                            <img :src="list.goods_url">
+                        </div>
+                        <h2 class="title">{{list.goodsName}}</h2>
+                        <p class="grab-money">夺宝价：<span class="money"><i>{{list.grabPrice}}</i>钱币</span></p>
+                        <div class="progress"><p class="progress-ps" :style="{width :list.apply / list.totalNeed*100 + '%'}"></p></div>
+                        <div class="demand"><span>总需：<i>{{list.totalNeed}}</i>份</span><span class="surplus">剩余：{{list.leftNeed}}份</span></div>
+                        <div class="count-h"><div class="count-down count-ondown" @click="">{{list.headline}}</div></div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </main>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabpublish']);
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>收货地址</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageSetAddress" class="page out">
+    <article class="viewport">
+        <main class="set-address">
+            <div class="set-row">
+                <label for="username">姓名</label>
+                <input class="inp-text" type="text" id="username" placeholder="请输入收货人姓名"/>
+            </div>
+            <div class="set-row">
+                <label for="userphone">手机号码</label>
+                <input class="inp-text" type="tel" id="userphone" maxlength="11" pattern="[0-9]*" placeholder="请输入收货人手机号"/>
+            </div>
+            <div class="set-row">
+                <label for="province">所在省份</label>
+                <div class="select-wrap">
+                    <select required name="" id="province" class="needsclick">
+                        <option selected disabled value="">选择所在省份</option>
+                    </select>
+                </div>
+            </div>
+            <div class="set-row">
+                <label for="city">所在城市</label>
+                <div class="select-wrap">
+                    <select required name="" id="city" class="needsclick">
+                        <option selected disabled value="">选择所在城市</option>
+                    </select>
+                </div>
+            </div>
+            <div class="set-row">
+                <label for="address">详细地址</label>
+                <textarea class="inp-text multi-text" name="" id="address" placeholder="请输入收货人详细地址"></textarea>
+            </div>
+        </main>
+    </article>
+    <footer class="footer-bar">
+        <a id="submitAddress" class="ui-btn red disabled" href="javascript:;">保存</a>
+    </footer>
+</section>
+<section id="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/myAddress']);
+</script>
+</body>
+</html>

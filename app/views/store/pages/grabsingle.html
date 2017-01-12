@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">晒单</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="grabsingle" class="page">
+    <main class="viewport">
+        <div class="hint">温馨提示：中奖用户可在“我的记录”页面晒单~</div>
+        <template v-if="isShow">
+            <div class="nodata"> <img src="../../../image/store/grab/nodata1.png"></div>
+        </template>
+        <template v-else>
+            <template v-for="arr in arrs">
+                <div class="shareInt">
+                    <p class="name">{{arr.phoneStr}}  {{arr.realNameStr}}</p>
+                    <p class="tel">{{arr.shareTime}}</p>
+                    <p class="line"></p>
+                    <p class="testimonials">{{arr.testimonials}}</p>
+                    <div class="img">
+                        <template v-for="(j,n) in arr.img" track-by="$index">
+                            <div class="baskimg"><img class="shareImg" :src= "n"  @click="Imgblow(n)" /></div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </template>
+    </main>
+</section>
+<div class="grabsinglepoker" @click="pokers" v-if="grabsinglepoker">
+    <div class="poker-img">
+        <img class="shareImg" :src= "Imgs" />
+        <p class="close">点击任意位置关闭</p>
+    </div>
+</div>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/grabsingle']);
+</script>
+</body>
+</html>

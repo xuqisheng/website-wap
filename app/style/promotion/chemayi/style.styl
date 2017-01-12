@@ -1,0 +1,171 @@
+@import '../../../../libs/qst/src/all'
+$global-reset();
+
+$default-font-size = 100px;
+$support-old-ie = false;
+$original-size = false;
+
+.js_hide {
+  display: none !important
+}
+
+a {
+  display: block
+  color: inherit
+}
+
+body {
+  font-family: $default-mobile-font-family
+  background-color: #ff3e2f
+  font-size: .24rem
+}
+
+//--------------------------------------------------------【基础布局】
+.viewport {
+  max-width: 720px;
+  margin: 0 auto
+  position: relative;
+}
+
+.page,
+.page > .viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0
+  overflow-y: scroll;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+//--------------------------------------------------------【公共样式】
+//页面加载中遮罩
+#pageLoading {
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  z-index: 9999
+  background rgba(255, 255, 255, 1) url("../../../image/promotion/common/loading.gif") no-repeat center center
+  background-size $rem(136px auto);
+}
+
+em {
+  font-style normal
+}
+
+//--------------------------------------------------------【页面样式】
+.box-wrap{
+  border: solid transparent;
+  border-width: 0.3rem 0.1rem 0.2rem 0.1rem;
+}
+.wrap{
+  position relative;
+  box-sizing border-box;
+  border .1rem solid #2d110a;
+  box-shadow inset 0 .15rem 0 .15rem #da8601;
+}
+
+.banner{
+  position absolute;
+  top 0;
+  left 0;
+  width 100%;
+  z-index 2;
+  pointer-events none;
+  img {
+    width 100%;
+  }
+}
+
+.top-item{
+  position relative;
+  margin .3rem .14rem 0;
+  padding 3.22rem 0 1.08rem;
+  background #ffc632 url("../../../image/promotion/chemayi/bg.jpg") no-repeat center bottom;
+  background-size 5.68rem;
+  border-bottom .06rem solid #040000;
+  &:after{
+    content '';
+    position absolute;
+    z-index 3;
+    bottom -.18rem;
+    right .38rem;
+    width 2.31rem;
+    height .77rem;
+    background url("../../../image/promotion/chemayi/decorate.png") no-repeat 0 0;
+    background-size 100%;
+  }
+}
+.btns-box{
+  .btn{
+    display block;
+    width 5.25rem;
+    height 1.37rem;
+    margin 0 auto;
+    & ~ .btn{
+      margin-top .28rem;
+    }
+  }
+  .btn1{
+    background #ffc632 url("../../../image/promotion/chemayi/btn1.png") no-repeat 0 0;
+    background-size 5.25rem;
+  }
+  .btn2{
+    background #ffc632 url("../../../image/promotion/chemayi/btn2.png") no-repeat 0 0;
+    background-size 5.25rem;
+  }
+  .btn3{
+    background #ffc632 url("../../../image/promotion/chemayi/btn3.png") no-repeat 0 0;
+    background-size 5.25rem;
+  }
+}
+
+.explain{
+  position relative;
+  background-color #d9a188;
+  margin 0 .14rem;
+  padding .3rem;
+  color #763f26;
+  &:before{
+    content '';
+    position absolute;
+    top .19rem;
+    right .19rem;
+    width 5.17rem;
+    height .4rem;
+    background url("../../../image/promotion/chemayi/bg-line.png") no-repeat 0 0;
+    background-size 100%;
+  }
+  .tit {
+    margin .1rem 0;
+    font-size .24rem;
+    font-weight bold;
+    line-height .4rem;
+  }
+  p {
+    font-size .22rem;
+    line-height .3rem;
+  }
+  .highlight{
+    font-weight bold;
+    color #bc2110;
+  }
+  .meta{
+    img {
+      width 100%;
+    }
+  }
+}
+.bottom-bar{
+  width 100%;
+  height .29rem;
+  background #ffc632 url("../../../image/promotion/chemayi/bottom.jpg") no-repeat 0 0;
+  background-size 100%;
+}

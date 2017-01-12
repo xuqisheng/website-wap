@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title class="title">天天竞猜</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageGuess" class="page" :style="backgroundColor" >
+    <main class="viewport">
+        <header class="top-bar" >
+            <img :src="imgsrc" class="imgsrc">
+            <nav class="nav-bar">
+                <template v-if="isLogin">
+                    <a class="top-nav" href="javascript:;">当前钱币:<span class="highlight">{{money}}</span></a>
+                </template>
+               <template v-else>
+                   <a class="top-nav" href="javascript:;" @click="myGuess">当前钱币:<span class="highlight nodata">未登录</span></a>
+               </template>
+                <!--<template v-if="isLogin">-->
+                    <!--<a class="top-nav" href="javascript:;" @click="gomyGuess">我的竞猜</a>-->
+                <!--</template>-->
+               <!--<template v-else>-->
+                   <!--<a class="top-nav" href="javascript:;" @click="myGuess">我的竞猜</a>-->
+               <!--</template>-->
+                <a class="top-nav top-navleft" href="javascript:;" @click="Raiderss">攻略</a>
+                <a class="top-nav" href="javascript:;" @click="myshare"><img src="../../../image/store/banner/shareImg.png"> 分享</a>
+            </nav>
+        </header>
+        <div class="status">
+            <div class="status-publish status-in" @click="publish">最新揭晓</div>
+            <template v-if="isLogin">
+                <div v-if="!needTip" class="status-record status-in" @click="gomyGuess" >我的竞猜</div>
+                <div v-else class="status-record status-in" @click="needTips" >我的竞猜</div>
+            </template>
+            <template v-else>
+                <div  class="status-record status-in" @click="myGuess">我的竞猜</div>
+            </template>
+                <a class="godata" v-if="needTip"></a>
+        </div>
+     <template v-if="lists == '' ">
+         <div  class="guess-list">
+             <div class="guess-item">
+                 <div class="gi-body">
+                     <div class="img-cen">
+                         <img src="../../../image/store/banner/plan.jpg">
+                         <p>竞猜正在筹划中...</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </template>
+    <template v-else>
+        <template v-for='(i, list) in lists'>
+            <div  class="guess-list">
+                <div class="guess-item">
+                    <div class="gi-header">
+                        <h2 class="title">{{list.title}}</h2>
+                        <p class="sub-title">答题时间：{{list.time}}</p>
+                    </div>
+                    <div class="gi-body">
+                        <template v-for='n in list.data'>
+                                <div class="select-item " data-id="{{n.ListId}}" answerRewardId='{{list.answerRewardId}}' resultRewardId='{{list.resultRewardId}}' :class="{'disabled': list.addtime > sysTime  || n.isId , 'selected': list.isSelectedIndex == $index || n.isIds }"  @click="hidesalse(i,$index)">
+                                    <span class="answer">{{n.name}}</span>
+                                    <span class="item-inner" v-if="list.pressure">押{{n.title}}得{{n.titlein}}</span>
+                                    <span class="item-inner inner-right">{{n.percentage}}</span>
+                                </div>
+                        </template>
+                    </div>
+                    <div class="AnswerName" v-if="list.Answerstate || sysTime > list.EndTime ">{{list.Havebeen}}</div>
+                    <template v-if='list.guessing'>
+                        <div class="gi-footer">
+                            <div class="gi-pay">
+                                <div class="pay-meta" v-if="list.ismeta">押{{list.coin}}钱币，预计奖励：<span>{{list.coins}}</span></div>
+                                <div class="pay-check">
+                                    <div class="pay-num">
+                                        <span class="num-ctrl minus" @click="reduce(i)"></span>
+                                        <input class="num-text" type="tel" @input="change(i)" v-model="list.coin" placeholder="0">
+                                        <span class="unit">钱币</span>
+                                        <span class="num-ctrl plus" @click="plus(i)"></span>
+                                    </div>
+                                    <template v-if="isLogin">
+                                        <a href="javascript:;" class="pay-submit" @click="submit($index)">确认提交</a>
+                                    </template>
+                                    <template v-else>
+                                        <a href="javascript:;" class="pay-submit" @click="goisLogin">请先登录</a>
+                                    </template>
+                                </div>
+                                <template v-if="list.empty">
+                                        <div class="pay-tip">所押金额必须为{{list.Numtips}}的整数倍</div>
+                                </template>
+                                <template v-if="list.nomoney">
+                                    <div class="pay-tip">您的钱币不足</div>
+                                </template>
+                                <template v-if="list.myLeastmoney">
+                                    <div class="pay-tip">最少为{{list.Leastmoney}}钱币</div>
+                                </template>
+                                <template v-if="list.mymostmoney">
+                                    <div class="pay-tip">最多为{{list.mostmoney}}钱币</div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-if='list.activityon'>
+                        <div class="count-down">
+                           {{{list.day}}}
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </template>
+        <template v-if="isApp">
+            <div class="Apple"><p>本活动由钱庄网提供，与设备生产商Apple Inc.无关。</p><p>最终解释权归杭州乾庄互联网金融服务有限公司所有</p></div>
+        </template>
+        <template v-else>
+            <div class="Apple"> <p>最终解释权归杭州乾庄互联网金融服务有限公司所有</p></div>
+        </template>
+    </main>
+</section>
+<section id="poker" class="pop-box page" v-show="poker"  style="display: none;">
+    <div class="min" @click="pokeron"><img src="../../../image/store/banner/poke.png" /></div>
+</section>
+<section id="pageLoading"  v-show="pageLoading"></section>
+<script src="/libs/requirejs/require.js"></script>
+<script>
+    require(['page/guess']);
+</script>
+
+</body>
+</html>

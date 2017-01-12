@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>钱庄理财</title>
+    <style>
+        .loading{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">页面加载中...</div>
+    <script>
+    function setSession(name, value){
+        if(sessionStorage){
+            sessionStorage.setItem(name, value);
+        }else{
+            document.cookie = name + "=" + decodeURIComponent(value);
+        }
+    }
+    function getHrefParam(key){
+        var href = window.location.href;
+        var paramReg = new RegExp(key + '\\=(.*)', 'ig');
+        if (paramReg.test(href)) {
+            return RegExp.$1
+        }
+        return '';
+    }
+
+    var sessionKey = 'redirectURL'; // 登陆成功返回页面读取的 key
+    var returnUrl = getHrefParam(sessionKey);
+    if(returnUrl){
+        setSession(sessionKey, returnUrl);
+    }else{ // 返回页面获取不到 则返回h5主页
+        setSession(sessionKey, 'index.html');
+    }
+    window.location.replace('/login.html');
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+@import '../../../../libs/qst/src/all'
+$global-reset();
+
+$default-font-size = 100px;
+$support-old-ie = false;
+$original-size = false;
+
+.js_hide {
+  display: none !important
+}
+
+a {
+  display: block
+  color: inherit
+}
+
+body {
+  font-family: $default-mobile-font-family
+  background-color: #a93236
+  font-size: .24rem
+}
+
+//--------------------------------------------------------【基础布局】
+.viewport {
+  max-width: 720px;
+  margin: 0 auto
+  position: relative
+}
+
+.page,
+.page > .viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0
+  overflow-y: scroll;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+//--------------------------------------------------------【公共样式】
+//页面加载中遮罩
+#pageLoading {
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  z-index: 9999
+  background rgba(255, 255, 255, 1) url("../../../image/promotion/common/loading.gif") no-repeat center center
+  background-size $rem(136px auto);
+}
+
+em {
+  font-style normal
+}
+
+//--------------------------------------------------------【页面样式】
+//H标签公共样式
+$hs =@block{
+  position relative
+  margin-top .42rem
+  margin-bottom .25rem
+  padding-left .3rem
+  img{
+    width .22rem
+    height .24rem
+    position absolute
+    left .45rem
+    top .05rem
+  }
+  span{
+    font-size .3rem
+    color #fff
+    padding-left .5rem
+  }
+}
+//线框
+$frame =@block{
+  width 5.78rem
+  height 1.27rem
+  border 1px solid #ff8888
+  -webkit-border-radius .2rem
+  border-radius .2rem
+  position relative
+}
+$frameone =@block{
+  border none
+  background #fbbab8
+  p{
+    color #9b7370
+    font-size .26rem
+    padding-left .3rem
+    padding-bottom .1rem
+    &:nth-child(1){
+      padding-top .24rem
+    }
+  }
+  span{
+     color #dc2e2a
+     font-size .26rem
+  }
+}
+.frame {
+  {$frame}
+}
+
+h2 {
+  {$hs}
+}
+
+.page .pageold {
+  position absolute
+  top 0
+  bottom 0
+  right 0
+  left 0
+  overflow-y scroll
+  -webkit-overflow-scrolling touch
+  overflow-scrolling touch
+  background #d24744
+  .head {
+    width 100%
+    img {
+      width 100%
+    }
+  }
+  .content {
+    width 5.8rem
+    margin 0 auto
+    overflow hidden
+    padding-top .45rem
+    .title-img {
+      width 3.8rem
+      height .74rem
+      position absolute
+      left 1.01rem
+      top -0.5rem
+    }
+    ul {
+      width 5.2rem
+      overflow hidden
+      margin 0 auto
+      margin-top .4rem
+      li {
+        color #fff
+        font-size .26rem
+        float left
+        padding-left .45rem
+        padding-bottom .15rem
+      }
+    }
+    .frameone {
+      {$frameone}
+      height 1.13rem
+    }
+    .frametwo {
+      {$frameone}
+      height 2.35rem
+      span {
+        padding-left .02rem
+        em {
+          display block
+          padding-top .1rem
+        }
+      }
+    }
+    .register-btn {
+      width 4.12rem
+      line-height .66rem
+      margin .42rem auto 0;
+      background #fc6460
+      -webkit-border-radius .4rem
+      border-radius .4rem
+      border none
+      color #fff
+      font-size .32rem
+      box-shadow 0 .1rem #921615;
+      margin-bottom .4rem
+      text-align: center
+    }
+    .activity {
+      background #cb3935
+      height 4.3rem
+      border none
+      margin-bottom .66rem
+      h2 {
+        margin-bottom .15rem
+        span {
+          padding-left .01rem
+          display block
+          padding-top .2rem
+        }
+      }
+      p {
+        color #ffd1d1
+        font-size .24rem
+        margin-left .3rem
+        margin-bottom .15rem
+        line-height: 1.3
+      }
+    }
+  }
+}

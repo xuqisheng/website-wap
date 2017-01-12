@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>实名认证</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageRealName" class="page" data-onpagefirstinto="realNameInit"
+         data-callback="realNameInto" data-fallback="realNameOut">
+</section>
+<section id="pageLoading"></section>
+<script src="../../../script/master/sea.js" id="seajsnode"></script>
+<script>
+    seajs.use('page/realName');
+</script>
+</body>
+</html>

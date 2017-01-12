@@ -1,0 +1,222 @@
+@import '../../../../libs/qst/src/all'
+$global-reset();
+
+$default-font-size = 100px;
+$support-old-ie = false;
+$original-size = false;
+
+.js_hide {
+  display: none !important
+}
+
+a {
+  display: block
+  color: inherit
+}
+
+body {
+  font-family: $default-mobile-font-family
+  background-color: #f9eab6
+  font-size: .24rem
+}
+//--------------------------------------------------------【基础布局】
+.viewport {
+  max-width: 720px;
+  margin: 0 auto
+  position: relative;
+}
+
+.page,
+.page > .viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0
+  overflow-y: scroll;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+//--------------------------------------------------------【公共样式】
+//页面加载中遮罩
+#pageLoading {
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  z-index: 9999
+  background rgba(255, 255, 255, 1) url("../../../image/promotion/common/loading.gif") no-repeat center center
+  background-size $rem(136px auto);
+}
+
+em {
+  font-style normal
+}
+//--------------------------------------------------------【页面样式】
+.banner{
+  width 100%
+  img{
+    width 100%
+  }
+}
+.title{
+  position: relative
+  font-size: .28rem
+  color: #5f1f02
+  line-height: .28rem
+  height: .28rem
+  text-align: center
+  width: 4.6rem
+  margin: .3rem auto 0
+  &:before{
+    content: ''
+    position: absolute
+    left: 0
+    top: 50%
+    width: 100%
+    height: .02rem
+    background-color: #eedc9f
+  }
+  span{
+    position: relative
+    z-index: 2
+    padding: 0 .18rem
+    background-color: #f9eab6
+    font-weight: bold
+    font-size: .28rem
+  }
+}
+.packet{
+  background url("../../../image/promotion/baiwanliuliang/redbom.png") no-repeat 0 0;
+  width 100%
+  height 3.4rem
+  background-size 100%
+  .money{
+    color #5f1f02
+    font-size .36rem
+    margin 0 auto
+    text-align center
+    padding-top 1.36rem
+    visibility hidden
+  }
+  .button{
+    font-size: .28rem;
+    color: #5f1f02;
+    text-align: center;
+    line-height: .64rem;
+    display: block;
+    margin: 0 auto;
+    width: 2.4rem;
+    height: .64rem;
+    border-radius: .3rem;
+    background: #fff83c;
+    margin-top: .79rem;
+    box-shadow: 0 -5px 0 #f6cd2a inset;
+  }
+}
+.center{
+  width 5.38rem
+  margin 0 auto
+  .firstinvest{
+    margin 0.4rem auto .4rem
+  }
+  .flow{
+    width 100%
+    height 1.32rem
+    background url("../../../image/promotion/baiwanliuliang/giveblue.png") no-repeat 0 0;
+    background-size 100%
+    margin .2rem auto 0
+    .flow-left-gs{
+      width 50%
+      color #fff83c
+      font-size .28rem
+      float left
+      text-align center
+      line-height 1.32rem
+     }
+    .flow-right-gs{
+      width 50%
+      color #ffffff
+      font-size .24rem
+      float right
+      text-align center
+      line-height 1.32rem
+    }
+    .flow-line{
+      line-height 1rem
+      p:nth-child(even){
+        width: 100%
+        text-align: center
+        line-height: 0.4rem
+        height: 0.4rem
+      }
+      p:nth-child(odd){
+        width: 100%
+        text-align: center
+        line-height: 0.34rem
+        height: 0.34rem
+        padding-top: 0.34rem
+      }
+    }
+  }
+  .titlein{
+    margin: 0.5rem auto 0
+    line-height 0.04rem
+    height 0.04rem
+  }
+  .titleos{
+    margin: 0.5rem auto 0
+  }
+  .adva{
+    overflow hidden
+    li{
+      margin-top .48rem
+      width 2rem
+      float left
+      text-align: center
+      line-height: .3rem
+      .advantage{
+        background #fff
+        border-radius .08rem
+        width 1.3rem
+        height 1.3rem
+        margin 0 auto
+        img{
+          width 100%
+        }
+      }
+      .advantage-title{
+        color #333333
+        font-size .24rem
+        padding-top .15rem
+      }
+    }
+    li:nth-child(odd){
+      margin .48rem 1rem 0 .18rem
+    }
+
+  }
+  .rule{
+    text-align center
+    margin 0 auto
+    color #333333
+    font-size .22rem
+    padding .5rem 0 .3rem 0
+  }
+  ol{
+    overflow hidden
+    padding-bottom .3rem
+    li{
+      color #333
+      font-size .22rem
+      line-height .3rem
+    }
+  }
+}
+

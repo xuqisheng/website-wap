@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="import" href="../includes/hdMeta.html?__inline">
+    <title>钱庄理财</title>
+    <link rel="import" href="../includes/hdStyle.html?__inline">
+</head>
+<body>
+<section id="pageProDetails" class="page" data-title="产品详情" data-onpagefirstinto="proDetailsInit"
+         data-callback="proDetailsInto" data-fallback="proDetailsOut">
+</section>
+<section id="pageProLogin">
+    <section id="pageLoginCheck" class="page out">
+        <article class="viewport ui-form">
+            <div class="main">
+                <div class="tit">请输入手机号码注册或登录</div>
+                <div class="cont">
+                    <div class="row phone">
+                        <input id="userPhone" class="ui-input-text" maxlength="11" pattern="[0-9]*" type="tel" placeholder="请输入您的手机号码" data-activate-check="true" />
+                        <i class="icon icon-phone"></i>
+                    </div>
+                </div>
+                <div class="operate">
+                    <a class="btn ui-btn red disabled js-submit" href="javascript:;" data-activate-submit="true">下一步</a>
+                </div>
+                <div class="operate">
+                    <a href="javascript:;" class="goback" data-backpage="pageProDetails" data-from="pageLoginCheck">取消返回</a>
+                </div>
+            </div>
+        </article>
+    </section>
+    <section id="pageSignIn" class="page out" data-callback="proPageSignInto" data-fallback="proPageSignOut">
+        <article class="viewport ui-form">
+            <div class="main">
+                <div class="tit">已向<span class="js-phone"></span>发送短信，请注意查收</div>
+                <div class="cont">
+                    <div class="row verify">
+                        <input class="js-userPhone" type="hidden" value=""/>
+                        <input id="verifyCode" class="ui-input-text" type="text" placeholder="输入验证码" data-activate-check="true"/>
+                        <input id="verifyCodeBtn" class="btn ui-btn red" type="button"  value="获取验证码">
+                    </div>
+                    <div class="row voice-tips js_hide" id="voiceTips">
+                        <p>收不到验证码?&nbsp;<a id="voiceBtn" href="javascript:;">试一下语音验证码</a></p>
+                    </div>
+                    <div class="row">
+                        <input id="setPassword" class="ui-input-text" type="password" placeholder="请设置8-20个字符密码，区分大小写" data-activate-check="true"/>
+                    </div>
+                    <div class="row protocol">
+                        <label><input type="checkbox" checked="checked" data-activate-check="true"/>我同意<a class="font-color-blue" href="https://www.qian360.com/user/registerProtocol.html" data-ajax="false">《钱庄网注册协议》</a></label>
+                    </div>
+                </div>
+                <div class="operate">
+                    <a class="btn ui-btn red disabled js-submit" href="javascript:;" data-activate-submit="true">注册</a>
+                </div>
+                <div class="operate">
+                    <a href="javascript:;" class="goback" data-backpage="pageLoginCheck" data-from="pageSignIn">返回上一步</a>
+                </div>
+            </div>
+        </article>
+    </section>
+    <section id="pageLogin" class="page out" data-callback="proPageLoginInto" data-fallback="proPageLoginOut">
+        <article class="viewport ui-form">
+            <div class="main">
+                <div class="tit">请输入登录密码</div>
+                <div class="cont">
+                    <div class="row">
+                        <input class="js-userPhone" type="hidden" value=""/>
+                        <input id="loginPassword" class="ui-input-text" type="password" placeholder="请输入您的登录密码" data-activate-check="true"/>
+                    </div>
+                    <div class="row find">
+                        <a class="font-color-blue" id="forgetLoginPasswordBtn" href="forgetLoginPassword.html" data-ajax="false">忘记密码?</a>
+                    </div>
+                </div>
+                <div class="operate">
+                    <a class="btn ui-btn red disabled js-submit" href="javascript:;" data-activate-submit="true">登录</a>
+                </div>
+                <div class="operate">
+                    <a href="javascript:;" class="goback" data-backpage="pageLoginCheck" data-from="pageLogin">返回上一步</a>
+                </div>
+            </div>
+        </article>
+    </section>
+</section>
+<section id="pageLoading"></section>
+<script src="../../../script/master/sea.js" id="seajsnode"></script>
+<script>
+    seajs.use(['route/routeProduct'])
+</script>
+</body>
+</html>
