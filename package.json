@@ -1,0 +1,48 @@
+{
+  "name": "wapQian",
+  "version": "1.0.2",
+  "description": "wap钱庄、积分商城",
+  "main": "",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "scripts": {
+    "h5": "fis3 release -w",
+    "h5-local": "fis3 release local -cw",
+    "h5-test": "fis3 release test -cd test",
+    "h5-dist": "fis3 release dist -cd dist",
+    "store": "fis3 release -w -f fis-conf-store.js",
+    "store-local": "fis3 release local -w -f fis-conf-store.js",
+    "store-test": "fis3 release test -c -d test -f fis-conf-store.js",
+    "store-dist": "fis3 release dist -c -d dist -f fis-conf-store.js",
+    "promotion": "fis3 release -w -f fis-conf-promotion.js",
+    "promotion-local": "fis3 release local -w -f fis-conf-promotion.js",
+    "promotion-test": "fis3 release test -c -d test -f fis-conf-promotion.js",
+    "promotion-dist": "fis3 release dist -c -d dist -f fis-conf-promotion.js",
+    "server": "fis3 server start",
+    "clean": "fis3 server clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://10.0.0.3:8888/git/fe/website-wap.git"
+  },
+  "keywords": [
+    "wap",
+    "h5"
+  ],
+  "author": "xjchenhao",
+  "license": "ISC",
+  "devDependencies": {
+    "fis-postpackager-seajsconfig": "^1.1.0",
+    "fis-preprocessor-replacer": "^1.0.0",
+    "fis3": "^3.3.7",
+    "fis3-hook-amd": "^0.1.13",
+    "fis3-hook-commonjs": "^0.1.5",
+    "fis3-packager-deps-pack": "0.0.1",
+    "fis3-parser-stylus": "^0.1.2",
+    "fis3-postpackager-loader": "^1.3.6",
+    "gulp": "^3.9.0",
+    "rap-mock": "^1.1.2"
+  }
+}
